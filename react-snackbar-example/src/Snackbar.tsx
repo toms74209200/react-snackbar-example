@@ -58,7 +58,7 @@ export const Snackbar = forwardRef<SnackbarHandles, {}>((_, ref) => {
     if (popping) {
       setIsDisplayed(true);
     } else {
-      const timeout = () => setTimeout(() => setIsDisplayed(false), 300);
+      const timeout = () => setTimeout(() => setIsDisplayed(false), 500);
       return () => clearTimeout(timeout());
     }
   }, [popping]);
