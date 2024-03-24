@@ -28,7 +28,7 @@ export const useSnackbar = () => {
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const Snackbar = forwardRef<SnackbarHandles, {}>((_, ref) => {
-  const [poping, setPoping] = useState(false); // Poping is a state to control the opacity of snackbar
+  const [popping, setPopping] = useState(false); // Poping is a state to control the opacity of snackbar
   const [isDisplayed, setIsDisplayed] = useState(false); // isDisplayed is a state to control the display of snackbar
   const [message, setMessage] = useState("");
   const [duration, setDuration] = useState(0);
@@ -37,7 +37,7 @@ export const Snackbar = forwardRef<SnackbarHandles, {}>((_, ref) => {
     ref,
     () => ({
       show: (message, duration) => {
-        setPoping(true);
+        setPopping(true);
         setMessage(message);
         setDuration(duration);
       },
@@ -47,27 +47,27 @@ export const Snackbar = forwardRef<SnackbarHandles, {}>((_, ref) => {
 
   // Hide snackbar after duration that is set by showSnackbar
   useEffect(() => {
-    if (poping) {
-      const timeout = setTimeout(() => setPoping(false), duration);
+    if (popping) {
+      const timeout = setTimeout(() => setPopping(false), duration);
       return () => clearTimeout(timeout);
     }
-  }, [poping, duration]);
+  }, [popping, duration]);
 
   // Control display of snackbar
   useEffect(() => {
-    if (poping) {
+    if (popping) {
       setIsDisplayed(true);
     } else {
       const timeout = () => setTimeout(() => setIsDisplayed(false), 300);
       return () => clearTimeout(timeout());
     }
-  }, [poping]);
+  }, [popping]);
 
   return (
     <div
       className={
         `${isDisplayed ? "block" : "hidden"} ` +
-        `${poping ? "opacity-100" : "opacity-0 transition-opacity delay-150 duration-300 ease-in-out"} ` +
+        `${popping ? "opacity-100" : "opacity-0 transition-opacity delay-150 duration-300 ease-in-out"} ` +
         "bg-black text-center shadow"
       }
     >
