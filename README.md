@@ -7,9 +7,9 @@ The example of Snackbar UI component in React.
 ## Environments
 
 - Node.js v20.11.0
-- React 18
+- React 19
 - tailwindcss 3.4.1
-- Storybook 8.0
+- Storybook 8.4
 
 - Visual Studio Code(Dev Containers)
 
@@ -20,14 +20,14 @@ react-snackbar-example$ npm run dev
 Debugger attached.
 
 > react-snackbar-example@0.0.0 dev
-> vite
+> vite --host 0.0.0.0
 
 Debugger attached.
 
-  VITE v5.2.4  ready in 161 ms
+  VITE v5.2.4  ready in 144 ms
 
   ➜  Local:   http://localhost:5173/
-  ➜  Network: use --host to expose
+  ➜  Network: http://172.17.0.2:5173/
   ➜  press h + enter to show help
 ```
 
@@ -41,7 +41,7 @@ Debugger attached.
 > storybook dev -p 6006 --no-open
 
 Debugger attached.
-@storybook/cli v8.0.4
+@storybook/core v8.4.7
 ```
 
 ## Demo
