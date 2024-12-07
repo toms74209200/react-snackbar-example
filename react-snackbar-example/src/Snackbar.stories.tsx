@@ -11,9 +11,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    ref: { current: null },
+  },
   decorators: [
-    (Story) => {
+    () => {
       const { snackbarRef, showSnackbar } = useSnackbar();
       return (
         <>
@@ -24,7 +26,6 @@ export const Default: Story = {
             show
           </button>
           <Snackbar ref={snackbarRef} />
-          <Story />
         </>
       );
     },

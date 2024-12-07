@@ -1,5 +1,5 @@
 import {
-  forwardRef,
+  RefObject,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -26,8 +26,11 @@ export const useSnackbar = () => {
   };
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const Snackbar = forwardRef<SnackbarHandles, {}>((_, ref) => {
+export const Snackbar = ({
+  ref,
+}: {
+  ref: RefObject<SnackbarHandles | null>;
+}) => {
   const [isPopping, setIsPopping] = useState(false); // Poping is a state to control the opacity of snackbar
   const [isDisplayed, setIsDisplayed] = useState(false); // isDisplayed is a state to control the display of snackbar
   const [message, setMessage] = useState("");
@@ -67,13 +70,15 @@ export const Snackbar = forwardRef<SnackbarHandles, {}>((_, ref) => {
     <div
       className={
         `${isDisplayed ? "block" : "hidden"} ` +
-        `${isPopping ? "opacity-100" : "opacity-0 transition-opacity delay-150 duration-300 ease-in-out"} ` +
+        `${
+          isPopping
+            ? "opacity-100"
+            : "opacity-0 transition-opacity delay-150 duration-300 ease-in-out"
+        } ` +
         "bg-black text-center shadow"
       }
     >
       <p className="p-2 text-white ">{message}</p>
     </div>
   );
-});
-
-Snackbar.displayName = "Snackbar";
+};
